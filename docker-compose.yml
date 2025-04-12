@@ -4,7 +4,7 @@ services:
       context: ./superset
     container_name: superset
     environment:
-      - DATABASE_URL=${DATABASE_URL:-postgresql+psycopg2://${POSTGRES_USER:-superset}:${POSTGRES_PASSWORD:-superset}@${POSTGRES_HOST:-postgres}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}}
+      - DATABASE_URL=${DATABASE_URL:-postgresql+psycopg2://${POSTGRES_USER:-PQDefaultUser}:${POSTGRES_PASSWORD:-PQDefaultPassword}@${POSTGRES_HOST:-postgres}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}}
       - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
       - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY:-GSEgudshgksjngksdgnlsdnjg6364Tjsdgnskt63}
       - FLASK_APP=superset
@@ -23,8 +23,8 @@ services:
     image: postgres:13
     container_name: postgres
     environment:
-      - POSTGRES_USER=${POSTGRES_USER:-superset}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-superset}
+      - POSTGRES_USER=${POSTGRES_USER:-PQDefaultUser}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-PQDefaultPassword}
       - POSTGRES_DB=${POSTGRES_DB:-superset}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
@@ -46,8 +46,8 @@ services:
     environment:
       - FLYWAY_BASELINE_ON_MIGRATE=true
       - FLYWAY_URL=jdbc:postgresql://postgres:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}
-      - FLYWAY_USER=${POSTGRES_USER:-superset}
-      - FLYWAY_PASSWORD=${POSTGRES_PASSWORD:-superset}
+      - FLYWAY_USER=${POSTGRES_USER:-PQDefaultUser}
+      - FLYWAY_PASSWORD=${POSTGRES_PASSWORD:-PQDefaultPassword}
     volumes:
       - ./flyway/sql:/flyway/sql
     networks:
