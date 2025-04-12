@@ -1,0 +1,64 @@
+services:
+  superset:
+    build:
+      context: ./superset
+    container_name: superset
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql+psycopg2://${POSTGRES_USER:-superset}:${POSTGRES_PASSWORD:-superset}@${POSTGRES_HOST:-postgres}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY:-superset}
+      - FLASK_APP=superset
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./superset_home:/app/superset_home
+      - ./home:/app/home
+    networks:
+      - superset_network
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-superset}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-superset}
+      - POSTGRES_DB=${POSTGRES_DB:-superset}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - superset_postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - superset_network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks:
+      - superset_network
+
+  flyway:
+    image: flyway/flyway:9
+    container_name: flyway
+    environment:
+      - FLYWAY_URL=jdbc:postgresql://postgres:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}
+      - FLYWAY_USER=${POSTGRES_USER:-superset}
+      - FLYWAY_PASSWORD=${POSTGRES_PASSWORD:-superset}
+    volumes:
+      - ./flyway/sql:/flyway/sql
+    networks:
+      - superset_network
+    depends_on:
+      - postgres
+    command: ["migrate"]
+
+volumes:
+  superset_postgres_data:
+    driver: local
+
+networks:
+  superset_network:
+    driver: bridge
