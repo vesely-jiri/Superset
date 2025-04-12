@@ -44,6 +44,7 @@ services:
     image: flyway/flyway:9
     container_name: flyway
     environment:
+      - FLYWAY_BASELINE_ON_MIGRATE=true
       - FLYWAY_URL=jdbc:postgresql://postgres:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}
       - FLYWAY_USER=${POSTGRES_USER:-superset}
       - FLYWAY_PASSWORD=${POSTGRES_PASSWORD:-superset}
