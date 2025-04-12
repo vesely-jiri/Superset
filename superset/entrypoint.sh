@@ -1,29 +1,15 @@
 #!/bin/bash
 set -e
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-NC='\033[0m' # No Color (resetování barvy)
-
 superset db upgrade
 
 if [[ "$SUPERSET_ADMIN_PASSWORD" == "admin" ]]; then
-  echo -e "${YELLOW}WARNING: SUPERSET_ADMIN_PASSWORD is set to default 'admin'.${NC}"
-  
-  while true; do
-    read -p "Do you want to continue with the default 'admin' password? (y/n): " confirm
-    case $confirm in
-      [Yy]* ) 
-        echo -e "${GREEN}Continuing with default password...${NC}"
-        break;;
-      [Nn]* ) 
-        echo -e "${RED}Please set a secure password in your .env file or environment variables.${NC}"
-        exit 1;;
-      * ) 
-        echo -e "${RED}Please answer 'y' or 'n'.${NC}"
-    esac
-  done
+  echo "WARNING: SUPERSET_ADMIN_PASSWORD is set to default 'admin'."
+  read -p "Do you want to continue with the default 'admin' password? (y/n): " confirm
+  if [[ "$confirm" != "y" ]]; then
+    echo "Please set a secure password in your .env file or environment variables."
+    exit 1
+  fi
 fi
 
 echo "Creating Superset admin user: $SUPERSET_USER_ADMIN"
