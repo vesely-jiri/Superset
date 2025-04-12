@@ -27,11 +27,13 @@ This project provides a ready-to-use Docker stack for running [Apache Superset](
    cp .env.example .env
    ```
 
-### 2. (Optional) Update `.env`
+### 2. Update variables in `.env`
 ```bash
-SUPERSET_ADMIN_USER=admin
-SUPERSET_ADMIN_PASSWORD=changeme
-SUPERSET_ADMIN_EMAIL=admin@example.com
+POSTGRES_PASSWORD=superset
+SUPERSET_SECRET_KEY=
+SUPERSET_ADMIN_USER: admin
+SUPERSET_ADMIN_PASSWORD: admin
+SUPERSET_ADMIN_EMAIL: admin@example.com
 ```
 
 ### 3. Build and start the stack
