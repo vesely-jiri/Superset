@@ -12,7 +12,7 @@ if [[ "$SUPERSET_ADMIN_PASSWORD" == "admin" ]]; then
   fi
 fi
 
-echo "Creating Superset admin user: $SUPERSET_USER_ADMIN"
+echo "Creating Superset admin user: $SUPERSET_ADMIN_USER"
 
 superset fab create-admin \
   --username "${SUPERSET_ADMIN_USER:-admin}" \
