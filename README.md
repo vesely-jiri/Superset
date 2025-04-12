@@ -45,3 +45,10 @@ docker-compose up --build
 ```bash
 http://localhost:8088
 ```
+
+## Updating
+
+### 1. To update database schema, use flyway `migrate` command
+```bash
+docker-compose exec flyway flyway migrate
+```
