@@ -54,6 +54,7 @@ services:
       - superset_network
     depends_on:
       - postgres
+      - superset
     command: ["migrate"]
 
 volumes:
