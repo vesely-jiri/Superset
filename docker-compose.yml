@@ -24,6 +24,8 @@ services:
   postgres:
     image: postgres:13
     container_name: postgres
+    env_file:
+      - .env
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-PQDefaultUser}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-PQDefaultPassword}
