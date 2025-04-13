@@ -29,7 +29,7 @@ CREATE TABLE "player" (
   "gender" varchar,
   "age" integer,
   "role" varchar NOT NULL,
-  "first_join" timestamptz
+  "first_join" timestamptz,
   "registered" boolean
 );
 
