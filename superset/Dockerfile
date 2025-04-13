@@ -2,7 +2,6 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Instalace potřebných balíčků, včetně postgresql-client
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
@@ -12,10 +11,9 @@ RUN apt-get update && apt-get install -y \
     libldap2-dev \
     curl \
     unzip \
-    postgresql-client \
+    postgresql-server-dev-all \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalace Python balíčků
 RUN pip install \
     apache-superset \
     Pillow \
