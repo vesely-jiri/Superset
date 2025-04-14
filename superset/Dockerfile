@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     postgresql-client \
     postgresql-server-dev-all \
+    postgresql-contrib \
     && rm -rf /var/lib/apt/lists/*
+
 
 RUN pip install \
     apache-superset \
