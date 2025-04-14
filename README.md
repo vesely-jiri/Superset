@@ -52,3 +52,6 @@ http://localhost:8088
 ```bash
 docker-compose exec flyway flyway migrate
 ```
+
+# TODO:
+## - Use docker secrets instead of .env
