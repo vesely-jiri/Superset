@@ -11,9 +11,7 @@ RUN apt-get update && apt-get install -y \
     libldap2-dev \
     curl \
     unzip \
-    postgresql-client \
-    postgresql-server-dev-all \
-    postgresql-contrib \
+    postgresql-client-common \
     && rm -rf /var/lib/apt/lists/*
 
 
