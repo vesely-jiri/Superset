@@ -48,10 +48,10 @@ CREATE TABLE IF NOT EXISTS "server_event_logs" (
   "detail" varchar
 );
 
-ALTER TABLE "server" ADD CONSTRAINT IF NOT EXISTS fk_server_type FOREIGN KEY ("type") REFERENCES "server_types" ("name");
-ALTER TABLE "player" ADD CONSTRAINT IF NOT EXISTS fk_player_role FOREIGN KEY ("role") REFERENCES "player_roles" ("name");
-ALTER TABLE "server_event_logs" ADD CONSTRAINT IF NOT EXISTS fk_event_type FOREIGN KEY ("event") REFERENCES "event_types" ("name");
-ALTER TABLE "server_event_logs" ADD CONSTRAINT IF NOT EXISTS fk_server FOREIGN KEY ("server") REFERENCES "server" ("name");
-ALTER TABLE "player_sessions" ADD CONSTRAINT IF NOT EXISTS fk_player FOREIGN KEY ("player") REFERENCES "player" ("uuid");
-ALTER TABLE "server_event_logs" ADD CONSTRAINT IF NOT EXISTS fk_player_uuid FOREIGN KEY ("player_uuid") REFERENCES "player" ("uuid");
-ALTER TABLE "player_sessions" ADD CONSTRAINT IF NOT EXISTS fk_server_session FOREIGN KEY ("server") REFERENCES "server" ("name");
+ALTER TABLE "server" ADD CONSTRAINT fk_server_type FOREIGN KEY ("type") REFERENCES "server_types" ("name");
+ALTER TABLE "player" ADD CONSTRAINT fk_player_role FOREIGN KEY ("role") REFERENCES "player_roles" ("name");
+ALTER TABLE "server_event_logs" ADD CONSTRAINT fk_event_type FOREIGN KEY ("event") REFERENCES "event_types" ("name");
+ALTER TABLE "server_event_logs" ADD CONSTRAINT fk_server FOREIGN KEY ("server") REFERENCES "server" ("name");
+ALTER TABLE "player_sessions" ADD CONSTRAINT fk_player FOREIGN KEY ("player") REFERENCES "player" ("uuid");
+ALTER TABLE "server_event_logs" ADD CONSTRAINT fk_player_uuid FOREIGN KEY ("player_uuid") REFERENCES "player" ("uuid");
+ALTER TABLE "player_sessions" ADD CONSTRAINT fk_server_session FOREIGN KEY ("server") REFERENCES "server" ("name");
