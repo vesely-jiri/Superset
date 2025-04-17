@@ -6,12 +6,12 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     libsasl2-dev \
+    libecpg-dev \
     libssl-dev \
     libffi-dev \
     libldap2-dev \
     curl \
     unzip \
-    libecpg-dev \
     && rm -rf /var/lib/apt/lists/*
 
 
