@@ -1,11 +1,11 @@
 ALTER TABLE event_types
-    ADD CONSTRAINT IF NOT EXISTS unique_event_type_name UNIQUE (name);
+    ADD CONSTRAINT unique_event_type_name UNIQUE (name);
 
 ALTER TABLE player_roles
-    ADD CONSTRAINT IF NOT EXISTS unique_player_role_name UNIQUE (name);
+    ADD CONSTRAINT unique_player_role_name UNIQUE (name);
 
 ALTER TABLE server_types
-    ADD CONSTRAINT IF NOT EXISTS unique_server_type_name UNIQUE (name);
+    ADD CONSTRAINT unique_server_type_name UNIQUE (name);
 
 INSERT INTO event_types (name, description) VALUES
     ('CONNECT', 'Player connected to the server'),
