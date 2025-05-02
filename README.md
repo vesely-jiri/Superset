@@ -54,4 +54,4 @@ docker-compose exec flyway flyway migrate
 ```
 
 # TODO:
-## - Use docker secrets instead of .env
+ - Use docker secrets instead of .env
