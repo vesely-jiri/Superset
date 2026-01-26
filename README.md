@@ -1,4 +1,4 @@
-# 🦸 Superset Stack (Docker)
+# Superset Stack (Docker)
 
 This project provides a ready-to-use Docker stack for running [Apache Superset](https://superset.apache.org/) with PostgreSQL and Redis. It's suitable for both local development and production deployment.
 
