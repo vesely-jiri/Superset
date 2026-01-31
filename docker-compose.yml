@@ -1,7 +1,6 @@
 services:
   superset:
-    build:
-      context: ./superset
+    image: apache/superset:2.1.0
     container_name: superset
     env_file:
       - .env
@@ -9,7 +8,7 @@ services:
       - DATABASE_URL=${DATABASE_URL:-postgresql+psycopg2://${POSTGRES_USER:-PQDefaultUser}:${POSTGRES_PASSWORD:-PQDefaultPassword}@${POSTGRES_HOST:-postgres}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-superset}}
       - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
       - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY:-GSEgudshgksjngksdgnlsdnjg6364Tjsdgnskt63}
-      - FLASK_APP=superset
+      - FLASK_APP=superset.app:create_app()
     ports:
       - "8088:8088"
     depends_on:
